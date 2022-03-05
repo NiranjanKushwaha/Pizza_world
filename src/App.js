@@ -1,9 +1,9 @@
 import "./App.css";
 import Home from "./Component/Home/Home";
-import Header from "./Component/Header";
+import Header from "./Component/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./Component/Footer";
-import Cart from "./Component/Cart";
+import Footer from "./Component/Footer/Footer";
+import Cart from "./Component/Cart/Cart";
 
 function App() {
   return (
