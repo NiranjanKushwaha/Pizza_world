@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import pizzaImg from "../images/pizza_logo.png";
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light ">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           <img className="logo" src={pizzaImg} alt="logo" />

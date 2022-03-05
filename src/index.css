@@ -1,3 +1,10 @@
 .navbar-brand .logo {
   width: 4rem;
 }
+.navbar {
+  background-color: #282e3d;
+  color: whitesmoke;
+}
+.nav-link {
+  color: white;
+}
