@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import "./Home.css";
+import { GlobalDataContext } from "../globalContext/GlobalContext";
 
 
 const Home = () => {
@@ -15,9 +16,9 @@ const Home = () => {
     img: '',
     selectedToppings: []
   });
-  const [index, setIndex] = useState(null);
+
   const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+  const globalDataContext = useContext(GlobalDataContext);
   useEffect(() => {
     const getData = async () => {
       let res = await axios(url);
@@ -39,16 +40,13 @@ const Home = () => {
       img: item?.img_url,
       selectedToppings: []
     })
-    setIndex(index);
     setShow(true);
-    // getToppingDetails()
   }
 
   const handleSelectTopping = (isSingleSelect, e) => {
     if (isSingleSelect) {
       let arr = e.target.value;
       console.log(arr);
-      // selectedToppings: [e.target.value]
       setCurrentPizzaData(prev => {
         return { ...prev, selectedToppings: [e.target.value] }
       })
@@ -57,11 +55,6 @@ const Home = () => {
       let arr = e.target.value;
       console.log(arr);
     }
-
-    setTimeout(() => {
-      console.log("after selection: ", currentPizzaData);
-    }, 1000);
-
   }
 
   function getToppingDetails() {
@@ -83,11 +76,12 @@ const Home = () => {
         );
       }
     }
-
-    // return [1, 2, 3].map(item => (<p>{item}</p>))
   }
+
   const addToCart = () => {
     console.log("added to cart");
+    globalDataContext.setSelectedPizzaData(currentPizzaData);
+    setShow(false);
   }
 
   return (<>
@@ -134,16 +128,7 @@ const Home = () => {
         <Modal.Title>Please Select Toppings</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* {
-            currentPizzaData.isRadio && currentPizzaData.toppingItem ? currentPizzaData.toppingItem.map(singleItem => {
-              return <><input type="radio" name="item" /><label>{singleItem}</label></>
-            }) : currentPizzaData.toppingItem.map(multiItem => {
-              return <><input type="checkbox" name="item" /><label>{multiItem}</label></>
-            })
-          } */}
-        {/* {JSON.stringify(currentPizzaData)} */}
         {getToppingDetails()}
-
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
