@@ -85,7 +85,9 @@ const Home = () => {
 
   const addToCart = () => {
     console.log("added to cart");
-    globalDataContext.setSelectedPizzaData(currentPizzaData);
+    globalDataContext.setSelectedPizzaData(prev => {
+      return [...prev, currentPizzaData];
+    });
     toast.success("Yep ! your pizza has been added to your cart");
     setShow(false);
   }
