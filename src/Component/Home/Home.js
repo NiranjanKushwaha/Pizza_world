@@ -3,7 +3,12 @@ import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import "./Home.css";
 import { GlobalDataContext } from "../globalContext/GlobalContext";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import { ToastContainer, toast } from "react-toastify";
 
+if (typeof window !== "undefined") {
+  injectStyle();
+}
 
 const Home = () => {
   const url = "https://run.mocky.io/v3/ec196a02-aaf4-4c91-8f54-21e72f241b68";
@@ -81,6 +86,7 @@ const Home = () => {
   const addToCart = () => {
     console.log("added to cart");
     globalDataContext.setSelectedPizzaData(currentPizzaData);
+    toast.success("Yep ! your pizza has been added to your cart");
     setShow(false);
   }
 
@@ -137,6 +143,17 @@ const Home = () => {
         <Button variant="primary" onClick={addToCart}>Add to Cart</Button>
       </Modal.Footer>
     </Modal>
+
+    <ToastContainer position="bottom-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover />
+
   </>);
 };
 
