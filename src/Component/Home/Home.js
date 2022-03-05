@@ -59,6 +59,10 @@ const Home = () => {
     else {
       let arr = e.target.value;
       console.log(arr);
+      setCurrentPizzaData(prev => {
+        return { ...prev, selectedToppings: [e.target.value] }
+      })
+      currentPizzaData.selectedToppings.push(e.target.value);
     }
   }
 

@@ -17,7 +17,7 @@ const Cart = () => {
   // }
   return (
     <>
-      <div className="pizza-container d-flex justify-content-around flex-wrap">
+      <div className="selected_pizza_list d-flex justify-content-around flex-wrap">
         {globalDataContext.selectedPizzaData &&
           globalDataContext.selectedPizzaData.map((el, index) => {
             return (
